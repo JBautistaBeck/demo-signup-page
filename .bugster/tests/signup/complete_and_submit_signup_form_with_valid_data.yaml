@@ -1,0 +1,12 @@
+name: Complete and submit signup form with valid data
+page: /signup
+page_path: app/signup/page.tsx
+task: Verify successful form submission with valid data
+steps:
+- Navigate to the signup page
+- Fill in all required text fields with valid data
+- Select a valid option from the dropdown if present
+- Check the checkbox if present
+- Click the submit button
+- Verify successful submission feedback is displayed
+expected_result: Form submits successfully and shows confirmation or redirects user

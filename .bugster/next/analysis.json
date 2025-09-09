@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "timestamp": 1757428757.3648682,
+    "version": 2,
+    "git": {
+      "branch": "main",
+      "commit": "f21268c2c006192dc949983bfd690ba9f428904f"
+    }
+  },
+  "data": {
+    "framework": {
+      "id": "next",
+      "name": "Next.js",
+      "dir_path": "/Users/juanbautistabeck/Documents/GitHub/demo-signup-page/"
+    },
+    "router_type": "app",
+    "stats": {
+      "fileCount": 12,
+      "routeCount": 2,
+      "apiRouteCount": 0,
+      "layoutCount": 1
+    },
+    "layouts": [
+      {
+        "name": "function",
+        "relative_file_path": "app/layout.tsx",
+        "relative_dir_path": "app",
+        "content": "import type { Metadata } from 'next'\nimport { GeistSans } from 'geist/font/sans'\nimport { GeistMono } from 'geist/font/mono'\nimport { Analytics } from '@vercel/analytics/next'\nimport './globals.css'\n\nexport const metadata: Metadata = {\n  title: 'v0 App',\n  description: 'Created with v0',\n  generator: 'v0.app',\n}\n\nexport default function RootLayout({\n  children,\n}: Readonly<{\n  children: React.ReactNode\n}>) {\n  return (\n    <html lang=\"en\">\n      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>\n        {children}\n        <Analytics />\n      </body>\n    </html>\n  )\n}\n",
+        "components": [
+          "Analytics"
+        ]
+      }
+    ],
+    "routes": [
+      {
+        "routePath": "/",
+        "relativeFilePath": "app/page.tsx",
+        "layoutChain": [
+          "function"
+        ],
+        "components": [
+          "Button",
+          "Link"
+        ],
+        "hasParams": false,
+        "hasForm": false,
+        "hooks": [],
+        "eventHandlers": [],
+        "featureFlags": []
+      },
+      {
+        "routePath": "/signup",
+        "relativeFilePath": "app/signup/page.tsx",
+        "layoutChain": [
+          "function"
+        ],
+        "components": [
+          "CardHeader",
+          "Textarea",
+          "CardTitle",
+          "Checkbox",
+          "Button",
+          "Card",
+          "SelectContent",
+          "Input",
+          "SelectTrigger",
+          "SelectValue",
+          "SelectItem",
+          "CardDescription",
+          "Select",
+          "CardContent",
+          "Label",
+          "Link"
+        ],
+        "hasParams": false,
+        "hasForm": true,
+        "hooks": [
+          "useState"
+        ],
+        "eventHandlers": [
+          "handleInputChange",
+          "handleSubmit"
+        ],
+        "featureFlags": []
+      }
+    ],
+    "api_routes": [],
+    "all_paths": [
+      "app/layout.tsx",
+      "app/page.tsx",
+      "app/signup/page.tsx",
+      "components/theme-provider.tsx",
+      "components/ui/button.tsx",
+      "components/ui/card.tsx",
+      "components/ui/checkbox.tsx",
+      "components/ui/input.tsx",
+      "components/ui/label.tsx",
+      "components/ui/select.tsx",
+      "components/ui/textarea.tsx",
+      "lib/utils.ts"
+    ]
+  }
+}

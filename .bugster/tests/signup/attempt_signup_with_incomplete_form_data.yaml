@@ -1,0 +1,11 @@
+name: Attempt signup with incomplete form data
+page: /signup
+page_path: app/signup/page.tsx
+task: Verify form validation for incomplete data
+steps:
+- Navigate to the signup page
+- Leave one or more required fields empty
+- Click the submit button
+- Verify validation error messages are displayed for empty fields
+expected_result: Form submission should be prevented and validation errors should
+  be displayed

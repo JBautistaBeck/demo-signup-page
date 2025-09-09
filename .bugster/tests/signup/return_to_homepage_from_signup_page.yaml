@@ -1,0 +1,10 @@
+name: Return to homepage from signup page
+page: /signup
+page_path: app/signup/page.tsx
+task: Verify navigation back to homepage
+steps:
+- Navigate to the signup page
+- Look for a home link, logo, or back button
+- Click on the home link or navigation element
+- Verify the URL changes to the root path (/)
+expected_result: User should be redirected back to the homepage

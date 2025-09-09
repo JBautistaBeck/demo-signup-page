@@ -1,0 +1,10 @@
+name: Navigate from home to signup page
+page: /
+page_path: app/page.tsx
+task: Verify navigation from homepage to signup page
+steps:
+- Load the homepage
+- Look for a signup link or button
+- Click on the signup link or button
+- Verify the URL changes to /signup
+expected_result: User should be redirected to the signup page

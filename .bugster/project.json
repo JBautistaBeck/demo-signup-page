@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "timestamp": 1757428757276,
+    "version": 2,
+    "git": {
+      "branch": "main",
+      "commit": "f21268c2c006192dc949983bfd690ba9f428904f"
+    }
+  },
+  "data": {
+    "frameworks": [
+      {
+        "id": "next",
+        "name": "Next.js",
+        "dir_path": "/Users/juanbautistabeck/Documents/GitHub/demo-signup-page/"
+      }
+    ]
+  }
+}

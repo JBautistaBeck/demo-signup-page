@@ -1,0 +1,11 @@
+name: Verify form field interactions on signup page
+page: /signup
+page_path: app/signup/page.tsx
+task: Test interactive elements of the signup form
+steps:
+- Navigate to the signup page
+- Click on each input field to verify focus states
+- Test dropdown selection functionality
+- Toggle the checkbox on and off
+- Verify textarea character input works correctly
+expected_result: All form elements should respond correctly to user interactions

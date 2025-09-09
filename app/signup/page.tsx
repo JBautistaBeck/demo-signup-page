@@ -38,13 +38,16 @@ export default function SignUpPage() {
     privacy: false,
   })
 
+  const [showError, setShowError] = useState(false)
+
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
+    setShowError(true)
+    setTimeout(() => setShowError(false), 5000)
   }
 
   return (
@@ -52,41 +55,52 @@ export default function SignUpPage() {
       <div className="container mx-auto max-w-2xl">
         <div className="text-center mb-8">
           <Link href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            ← Volver al inicio
+            ← Back to home
           </Link>
         </div>
 
+        {showError && (
+          <div className="mb-6 p-4 bg-destructive/10 border border-destructive/20 rounded-lg">
+            <div className="flex items-center space-x-2">
+              <span className="text-destructive text-lg">⚠️</span>
+              <p className="text-destructive font-medium">
+                Error: Unable to create account. Please check your information and try again.
+              </p>
+            </div>
+          </div>
+        )}
+
         <Card className="border-border shadow-sm">
           <CardHeader className="text-center space-y-2">
-            <CardTitle className="text-3xl font-bold">Crear tu cuenta</CardTitle>
+            <CardTitle className="text-3xl font-bold">Create your account</CardTitle>
             <CardDescription className="text-lg">
-              Completa todos los campos para comenzar tu experiencia
+              Complete all fields to begin your experience
             </CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-6">
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Información Personal */}
+              {/* Personal Information */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground">Información Personal</h3>
+                <h3 className="text-lg font-semibold text-foreground">Personal Information</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="firstName">Nombre *</Label>
+                    <Label htmlFor="firstName">First Name *</Label>
                     <Input
                       id="firstName"
-                      type="text"
-                      placeholder="Tu nombre"
+                      type="number"
+                      placeholder="Your first name"
                       value={formData.firstName}
                       onChange={(e) => handleInputChange("firstName", e.target.value)}
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="lastName">Apellido *</Label>
+                    <Label htmlFor="lastName">Last Name *</Label>
                     <Input
                       id="lastName"
                       type="text"
-                      placeholder="Tu apellido"
+                      placeholder="Your last name"
                       value={formData.lastName}
                       onChange={(e) => handleInputChange("lastName", e.target.value)}
                       required
@@ -100,17 +114,17 @@ export default function SignUpPage() {
                     <Input
                       id="email"
                       type="email"
-                      placeholder="tu@email.com"
+                      placeholder="your@email.com"
                       value={formData.email}
                       onChange={(e) => handleInputChange("email", e.target.value)}
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="phone">Teléfono</Label>
+                    <Label htmlFor="phone">Phone</Label>
                     <Input
                       id="phone"
-                      type="tel"
+                      type="text"
                       placeholder="+1 234 567 8900"
                       value={formData.phone}
                       onChange={(e) => handleInputChange("phone", e.target.value)}
@@ -120,7 +134,7 @@ export default function SignUpPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="birthDate">Fecha de Nacimiento</Label>
+                    <Label htmlFor="birthDate">Date of Birth</Label>
                     <Input
                       id="birthDate"
                       type="date"
@@ -129,42 +143,42 @@ export default function SignUpPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="gender">Género</Label>
+                    <Label htmlFor="gender">Gender</Label>
                     <Select onValueChange={(value) => handleInputChange("gender", value)}>
                       <SelectTrigger>
-                        <SelectValue placeholder="Selecciona tu género" />
+                        <SelectValue placeholder="Select your gender" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="male">Masculino</SelectItem>
-                        <SelectItem value="female">Femenino</SelectItem>
-                        <SelectItem value="other">Otro</SelectItem>
-                        <SelectItem value="prefer-not-to-say">Prefiero no decir</SelectItem>
+                        <SelectItem value="male">Male</SelectItem>
+                        <SelectItem value="female">Female</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                        <SelectItem value="prefer-not-to-say">Prefer not to say</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                 </div>
               </div>
 
-              {/* Información Profesional */}
+              {/* Professional Information */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground">Información Profesional</h3>
+                <h3 className="text-lg font-semibold text-foreground">Professional Information</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="company">Empresa</Label>
+                    <Label htmlFor="company">Company</Label>
                     <Input
                       id="company"
-                      type="text"
-                      placeholder="Nombre de tu empresa"
+                      type="number"
+                      placeholder="Your company name"
                       value={formData.company}
                       onChange={(e) => handleInputChange("company", e.target.value)}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="position">Cargo</Label>
+                    <Label htmlFor="position">Position</Label>
                     <Input
                       id="position"
                       type="text"
-                      placeholder="Tu posición"
+                      placeholder="Your position"
                       value={formData.position}
                       onChange={(e) => handleInputChange("position", e.target.value)}
                     />
@@ -172,45 +186,45 @@ export default function SignUpPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="industry">Industria</Label>
+                  <Label htmlFor="industry">Industry</Label>
                   <Select onValueChange={(value) => handleInputChange("industry", value)}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Selecciona tu industria" />
+                      <SelectValue placeholder="Select your industry" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="technology">Tecnología</SelectItem>
-                      <SelectItem value="finance">Finanzas</SelectItem>
-                      <SelectItem value="healthcare">Salud</SelectItem>
-                      <SelectItem value="education">Educación</SelectItem>
+                      <SelectItem value="technology">Technology</SelectItem>
+                      <SelectItem value="finance">Finance</SelectItem>
+                      <SelectItem value="healthcare">Healthcare</SelectItem>
+                      <SelectItem value="education">Education</SelectItem>
                       <SelectItem value="retail">Retail</SelectItem>
-                      <SelectItem value="manufacturing">Manufactura</SelectItem>
-                      <SelectItem value="consulting">Consultoría</SelectItem>
-                      <SelectItem value="other">Otra</SelectItem>
+                      <SelectItem value="manufacturing">Manufacturing</SelectItem>
+                      <SelectItem value="consulting">Consulting</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
               </div>
 
-              {/* Ubicación */}
+              {/* Location */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground">Ubicación</h3>
+                <h3 className="text-lg font-semibold text-foreground">Location</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="country">País</Label>
+                    <Label htmlFor="country">Country</Label>
                     <Input
                       id="country"
                       type="text"
-                      placeholder="Tu país"
+                      placeholder="Your country"
                       value={formData.country}
                       onChange={(e) => handleInputChange("country", e.target.value)}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="city">Ciudad</Label>
+                    <Label htmlFor="city">City</Label>
                     <Input
                       id="city"
                       type="text"
-                      placeholder="Tu ciudad"
+                      placeholder="Your city"
                       value={formData.city}
                       onChange={(e) => handleInputChange("city", e.target.value)}
                     />
@@ -218,18 +232,18 @@ export default function SignUpPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="address">Dirección</Label>
+                  <Label htmlFor="address">Address</Label>
                   <Input
                     id="address"
                     type="text"
-                    placeholder="Tu dirección completa"
+                    placeholder="Your full address"
                     value={formData.address}
                     onChange={(e) => handleInputChange("address", e.target.value)}
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="postalCode">Código Postal</Label>
+                  <Label htmlFor="postalCode">Postal Code</Label>
                   <Input
                     id="postalCode"
                     type="text"
@@ -240,16 +254,16 @@ export default function SignUpPage() {
                 </div>
               </div>
 
-              {/* Redes Sociales */}
+              {/* Social Media */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground">Redes Sociales</h3>
+                <h3 className="text-lg font-semibold text-foreground">Social Media</h3>
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="website">Sitio Web</Label>
+                    <Label htmlFor="website">Website</Label>
                     <Input
                       id="website"
                       type="url"
-                      placeholder="https://tusitio.com"
+                      placeholder="https://yoursite.com"
                       value={formData.website}
                       onChange={(e) => handleInputChange("website", e.target.value)}
                     />
@@ -259,7 +273,7 @@ export default function SignUpPage() {
                     <Input
                       id="linkedin"
                       type="url"
-                      placeholder="https://linkedin.com/in/tuperfil"
+                      placeholder="https://linkedin.com/in/yourprofile"
                       value={formData.linkedin}
                       onChange={(e) => handleInputChange("linkedin", e.target.value)}
                     />
@@ -269,7 +283,7 @@ export default function SignUpPage() {
                     <Input
                       id="twitter"
                       type="url"
-                      placeholder="https://twitter.com/tuusuario"
+                      placeholder="https://twitter.com/yourusername"
                       value={formData.twitter}
                       onChange={(e) => handleInputChange("twitter", e.target.value)}
                     />
@@ -277,14 +291,14 @@ export default function SignUpPage() {
                 </div>
               </div>
 
-              {/* Biografía */}
+              {/* Biography */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground">Sobre ti</h3>
+                <h3 className="text-lg font-semibold text-foreground">About You</h3>
                 <div className="space-y-2">
-                  <Label htmlFor="bio">Biografía</Label>
+                  <Label htmlFor="bio">Biography</Label>
                   <Textarea
                     id="bio"
-                    placeholder="Cuéntanos un poco sobre ti, tus intereses y experiencia..."
+                    placeholder="Tell us a bit about yourself, your interests and experience..."
                     value={formData.bio}
                     onChange={(e) => handleInputChange("bio", e.target.value)}
                     rows={4}
@@ -292,27 +306,27 @@ export default function SignUpPage() {
                 </div>
               </div>
 
-              {/* Contraseña */}
+              {/* Password */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground">Seguridad</h3>
+                <h3 className="text-lg font-semibold text-foreground">Security</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="password">Contraseña *</Label>
+                    <Label htmlFor="password">Password *</Label>
                     <Input
                       id="password"
                       type="password"
-                      placeholder="Mínimo 8 caracteres"
+                      placeholder="Minimum 8 characters"
                       value={formData.password}
                       onChange={(e) => handleInputChange("password", e.target.value)}
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="confirmPassword">Confirmar Contraseña *</Label>
+                    <Label htmlFor="confirmPassword">Confirm Password *</Label>
                     <Input
                       id="confirmPassword"
                       type="password"
-                      placeholder="Repite tu contraseña"
+                      placeholder="Repeat your password"
                       value={formData.confirmPassword}
                       onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
                       required
@@ -321,9 +335,9 @@ export default function SignUpPage() {
                 </div>
               </div>
 
-              {/* Preferencias */}
+              {/* Preferences */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground">Preferencias</h3>
+                <h3 className="text-lg font-semibold text-foreground">Preferences</h3>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-2">
                     <Checkbox
@@ -332,7 +346,7 @@ export default function SignUpPage() {
                       onCheckedChange={(checked) => handleInputChange("newsletter", checked as boolean)}
                     />
                     <Label htmlFor="newsletter" className="text-sm">
-                      Quiero recibir noticias y actualizaciones por email
+                      I want to receive news and updates via email
                     </Label>
                   </div>
 
@@ -344,9 +358,9 @@ export default function SignUpPage() {
                       required
                     />
                     <Label htmlFor="terms" className="text-sm">
-                      Acepto los{" "}
+                      I accept the{" "}
                       <Link href="/terms" className="text-accent hover:underline">
-                        términos y condiciones
+                        terms and conditions
                       </Link>{" "}
                       *
                     </Label>
@@ -360,9 +374,9 @@ export default function SignUpPage() {
                       required
                     />
                     <Label htmlFor="privacy" className="text-sm">
-                      Acepto la{" "}
+                      I accept the{" "}
                       <Link href="/privacy" className="text-accent hover:underline">
-                        política de privacidad
+                        privacy policy
                       </Link>{" "}
                       *
                     </Label>
@@ -375,15 +389,15 @@ export default function SignUpPage() {
                 className="w-full py-6 text-lg font-semibold bg-accent hover:bg-accent/90 text-accent-foreground"
                 size="lg"
               >
-                Crear mi cuenta
+                Create my account
               </Button>
             </form>
 
             <div className="text-center pt-4">
               <p className="text-sm text-muted-foreground">
-                ¿Ya tienes una cuenta?{" "}
+                Already have an account?{" "}
                 <Link href="/signin" className="text-accent hover:underline font-medium">
-                  Inicia sesión aquí
+                  Sign in here
                 </Link>
               </p>
             </div>
